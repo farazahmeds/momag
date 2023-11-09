@@ -1,0 +1,12 @@
+work_dir: ${hydra:runtime.cwd}
+
+input_file: 'F:\exp\rgb\20231027_141808_rec_rgb.h5'
+trigger_frame: 500
+crop_frame_range: 100
+step_frame: 3
+
+alpha: 20
+threshold: 2
+
+output_file: 'output.mp4'
+output_frame_rate: 30
