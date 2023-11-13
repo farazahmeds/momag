@@ -4,7 +4,7 @@ The implementation of sparse PCA-based, selective motion magnification can be fo
 
 ![Fig1](img/momag.PNG)
 
-GUI support for Cropping Frames
+GUI support for cropping frames
 
 ![Fig2](img/momag_gui.PNG)
 
