@@ -4,6 +4,12 @@ The implementation of sparse PCA-based, selective motion magnification can be fo
 
 ![Fig1](img/momag.PNG)
 
+GUI support for Cropping Frames
+
+![Fig2](img/momag_gui.PNG)
+
+
+
 ## Requirements
 
 Setup anaconda via ```conda env create -f environment.yml```. To reproduce the demo recording, the file EP04_04f.avi from the CASME II microexpression dataset is required.
