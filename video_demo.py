@@ -4,7 +4,7 @@ import neurovc as nvc
 
 
 if __name__ == "__main__":
-    video_reader = VideoReader("vid.avi")
+    video_reader = VideoReader("sample_video.mp4")
     motion_magnifier = None
     with VideoWriter("mag.avi",
                      framerate=video_reader.framerate) as video_writer:

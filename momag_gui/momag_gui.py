@@ -129,10 +129,9 @@ class GUIWindow(object):
             self.hdfFile = h5py.File(self.fileName, 'r')
             self.framesGenerator = self.frameGenerator()
 
-            frameCount = self.hdfFile['Frames'].shape[
-                0]  # Assuming the first dimension represents the number of frames
-            self.frame_slider.setMaximum(frameCount - 1)  # Subtract 1 because the index is 0-based
-            self.updateFrame(0)  # Initialize with the first frame
+            frameCount = self.hdfFile['Frames'].shape[0]
+            self.frame_slider.setMaximum(frameCount - 1)
+            self.updateFrame(0)
 
     def frameGenerator(self):
         for frame in self.hdfFile['Frames']:
@@ -141,7 +140,7 @@ class GUIWindow(object):
     def updateFrame(self, frameIndex):
         if hasattr(self, 'framesGenerator'):
             self.frame_number.setText(f'{frameIndex}')
-            self.hdfFile['Frames'].id.refresh()  # Refresh the HDF5 file object
+            self.hdfFile['Frames'].id.refresh()
             frame = self.hdfFile['Frames'][frameIndex]
 
             aligned = cv2.resize(frame, (frame.shape[1] // 4 * 4, frame.shape[0] // 4 * 4), fx=0, fy=0,
@@ -152,7 +151,6 @@ class GUIWindow(object):
             old_width, old_height = rgb.shape[1], rgb.shape[0]
             ratio = new_width / old_width
 
-            # Calculate new height with the same ratio
             new_height = int(old_height * ratio)
 
             resized_image = cv2.resize(rgb, (new_width, new_height))
@@ -183,12 +181,10 @@ class GUIWindow(object):
         frame_0_value = None
         frame_n_value = None
 
-        # Open and read the file
-        with open('frames.txt', 'r') as file:  # Replace 'your_file.txt' with your file name
+        with open('frames.txt', 'r') as file:
             for line in file:
-                # Check if the line contains 'frame_0' or 'frame_n'
                 if 'frame_0=' in line:
-                    frame_0_value = int(line.split('=')[1].strip())  # Split the line and convert the number
+                    frame_0_value = int(line.split('=')[1].strip())
                 elif 'frame_n=' in line:
                     frame_n_value = int(line.split('=')[1].strip())
 
