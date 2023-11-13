@@ -12,8 +12,9 @@ import sys
 
 from neurovc.momag import ThreshCompressor
 
-def run_momag(path_to_hdf_file, frame_zero, frame_n, alpha, frame_rate, file_name):
-    comp = ThreshCompressor(alpha=alpha, threshold=2)
+
+def run_momag(path_to_hdf_file, frame_zero, frame_n, alpha, threshold, frame_rate, file_name):
+    comp = ThreshCompressor(alpha=alpha, threshold=threshold)
 
     input_file = str(path_to_hdf_file)
 
@@ -27,7 +28,7 @@ def run_momag(path_to_hdf_file, frame_zero, frame_n, alpha, frame_rate, file_nam
             frame = f["Frames"][i]
             frame = cv2.resize(debayerer(frame), None, fx=0.5, fy=0.5)
 
-            ref = cv2.resize(debayerer( f["Frames"][0]), None, fx=0.5, fy=0.5)
+            ref = cv2.resize(debayerer(f["Frames"][0]), None, fx=0.5, fy=0.5)
 
             if motion_magnifier is None:
                 motion_magnifier = OnlineLandmarkMagnifier(landmarks=nvc.LM_MOUTH + nvc.LM_EYE_LEFT + nvc.LM_EYE_RIGHT,

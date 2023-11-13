@@ -1,2 +1,2 @@
-frame_0=472
-frame_n=1115
+frame_0=283
+frame_n=695
