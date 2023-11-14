@@ -15,7 +15,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtGui import QImage
 import cv2
-
+from neurovc.util.IO_util import Debayerer
 from momag_ import run_momag
 
 class GUIWindow(object):
@@ -119,6 +119,7 @@ class GUIWindow(object):
         self.menubar.addAction(self.menuFile.menuAction())
         self.start_frame = None
 
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -156,19 +157,18 @@ class GUIWindow(object):
 
     def updateFrame(self, frameIndex):
         if hasattr(self, 'framesGenerator'):
+            self.debeyer = Debayerer()
             self.frame_number.setText(f'{frameIndex}')
             self.hdfFile['Frames'].id.refresh()
             frame = self.hdfFile['Frames'][frameIndex]
+            frame = self.debeyer(frame)
 
-            aligned = cv2.resize(frame, (frame.shape[1] // 4 * 4, frame.shape[0] // 4 * 4), fx=0, fy=0,
+            rgb = cv2.resize(frame, (frame.shape[1] // 4 * 4, frame.shape[0] // 3 * 3), fx=0, fy=0,
                                  interpolation=cv2.INTER_NEAREST)
-            rgb = cv2.cvtColor(aligned, cv2.COLOR_BGR2RGB)
 
-            new_width = 581
-            old_width, old_height = rgb.shape[1], rgb.shape[0]
-            ratio = new_width / old_width
 
-            new_height = int(old_height * ratio)
+            new_width = 645
+            new_height = 405
 
             resized_image = cv2.resize(rgb, (new_width, new_height))
 
@@ -212,6 +212,8 @@ class GUIWindow(object):
                   threshold=int(self.lineEdit_threshold.text()),
                   frame_rate=int(self.lineEdit_frame_rate.text()),
                   file_name=self.lineEdit_file_name.text())
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -230,6 +232,7 @@ def main():
     main_window = MainWindow()
     main_window.show()
     sys.exit(app.exec_())
+
 
 if __name__ == "__main__":
     main()
