@@ -18,6 +18,9 @@ def run_momag(path_to_hdf_file, alpha, threshold, frame_rate, file_name, frames_
     for index, segmented_frames in enumerate(frames_list):
         first_frame, second_frame = segmented_frames
 
+        if second_frame < first_frame:
+            first_frame, second_frame = second_frame, first_frame
+
         comp = ThreshCompressor(alpha=alpha, threshold=threshold)
 
         input_file = str(path_to_hdf_file)
