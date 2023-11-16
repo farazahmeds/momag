@@ -13,30 +13,34 @@ import sys
 from neurovc.momag import ThreshCompressor
 
 
-def run_momag(path_to_hdf_file, frame_zero, frame_n, alpha, threshold, frame_rate, file_name):
-    comp = ThreshCompressor(alpha=alpha, threshold=threshold)
+def run_momag(path_to_hdf_file, alpha, threshold, frame_rate, file_name, frames_list):
 
-    input_file = str(path_to_hdf_file)
+    for index, segmented_frames in enumerate(frames_list):
+        first_frame, second_frame = segmented_frames
 
-    debayerer = Debayerer()
-    motion_magnifier = None
+        comp = ThreshCompressor(alpha=alpha, threshold=threshold)
 
-    writer = VideoWriter(f"{str(file_name)}.mp4", framerate=frame_rate)
+        input_file = str(path_to_hdf_file)
 
-    with h5py.File(input_file, "r") as f:
-        for i in range(frame_zero, frame_n, 3):
-            frame = f["Frames"][i]
-            frame = cv2.resize(debayerer(frame), None, fx=0.5, fy=0.5)
+        debayerer = Debayerer()
+        motion_magnifier = None
 
-            ref = cv2.resize(debayerer(f["Frames"][0]), None, fx=0.5, fy=0.5)
+        writer = VideoWriter(f"{str(file_name)}_seg_{index}.mp4", framerate=frame_rate)
 
-            if motion_magnifier is None:
-                motion_magnifier = OnlineLandmarkMagnifier(landmarks=nvc.LM_MOUTH + nvc.LM_EYE_LEFT + nvc.LM_EYE_RIGHT,
-                                                           reference=ref, alpha=alpha, attenuation_function=comp)
+        with h5py.File(input_file, "r") as f:
+            for i in range(first_frame, second_frame, 3):
+                frame = f["Frames"][i]
+                frame = cv2.resize(debayerer(frame), None, fx=0.5, fy=0.5)
 
-            magnified, _ = motion_magnifier(frame)
-            frame = np.concatenate((frame, magnified), axis=1)
-            writer(frame)
+                ref = cv2.resize(debayerer(f["Frames"][0]), None, fx=0.5, fy=0.5)
+
+                if motion_magnifier is None:
+                    motion_magnifier = OnlineLandmarkMagnifier(landmarks=nvc.LM_MOUTH + nvc.LM_EYE_LEFT + nvc.LM_EYE_RIGHT,
+                                                               reference=ref, alpha=alpha, attenuation_function=comp)
+
+                magnified, _ = motion_magnifier(frame)
+                frame = np.concatenate((frame, magnified), axis=1)
+                writer(frame)
 
     sys.exit("Error message")
 

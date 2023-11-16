@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>733</width>
-    <height>702</height>
+    <height>703</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QLabel" name="frames">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>70</x>
       <y>20</y>
       <width>581</width>
       <height>401</height>
@@ -30,7 +30,7 @@
    <widget class="QSlider" name="frame_slider">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>450</y>
       <width>671</width>
       <height>22</height>
@@ -43,7 +43,7 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>530</y>
       <width>321</width>
       <height>61</height>
@@ -53,36 +53,10 @@
      <string>Select Frames</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_frame_zero">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>486</y>
-      <width>51</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_frame_n">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>485</y>
-      <width>121</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLabel" name="frame_number">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>640</x>
       <y>430</y>
       <width>71</width>
       <height>20</height>
@@ -95,36 +69,10 @@
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>480</y>
-      <width>61</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>first frame:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>480</y>
-      <width>61</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>last frame:</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="run_motion_magnification">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>560</x>
       <y>540</y>
       <width>161</width>
       <height>51</height>
@@ -137,7 +85,7 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>410</x>
       <y>540</y>
       <width>31</width>
       <height>40</height>
@@ -150,7 +98,7 @@
    <widget class="QLineEdit" name="lineEdit_alpha">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>450</x>
       <y>550</y>
       <width>61</width>
       <height>20</height>
@@ -160,7 +108,7 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>410</x>
       <y>600</y>
       <width>91</width>
       <height>40</height>
@@ -173,7 +121,7 @@
    <widget class="QLineEdit" name="lineEdit_frame_rate">
     <property name="geometry">
      <rect>
-      <x>490</x>
+      <x>500</x>
       <y>610</y>
       <width>61</width>
       <height>20</height>
@@ -183,7 +131,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>480</x>
       <y>480</y>
       <width>111</width>
       <height>20</height>
@@ -196,7 +144,7 @@
    <widget class="QLabel" name="label_total_frames">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>590</x>
       <y>480</y>
       <width>121</width>
       <height>21</height>
@@ -209,7 +157,7 @@
    <widget class="QLineEdit" name="lineEdit_file_name">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>470</x>
       <y>640</y>
       <width>161</width>
       <height>20</height>
@@ -219,7 +167,7 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>410</x>
       <y>630</y>
       <width>51</width>
       <height>40</height>
@@ -232,7 +180,7 @@
    <widget class="Line" name="line_2">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>380</x>
       <y>490</y>
       <width>20</width>
       <height>171</height>
@@ -245,7 +193,7 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>410</x>
       <y>510</y>
       <width>111</width>
       <height>20</height>
@@ -258,7 +206,7 @@
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>410</x>
       <y>570</y>
       <width>51</width>
       <height>40</height>
@@ -271,7 +219,7 @@
    <widget class="QLineEdit" name="lineEdit_threshold">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>470</x>
       <y>580</y>
       <width>61</width>
       <height>20</height>
@@ -281,14 +229,14 @@
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>600</y>
       <width>271</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Press 'Select Frames' one time to select the first frame,</string>
+     <string>Press 'Select Frames' one time to select the first frame-- ,</string>
     </property>
     <property name="textFormat">
      <enum>Qt::RichText</enum>
@@ -297,7 +245,7 @@
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>630</y>
       <width>291</width>
       <height>10</height>
@@ -305,6 +253,32 @@
     </property>
     <property name="text">
      <string>and press it second time to select last frame.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>490</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Segments:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_segments">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>490</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

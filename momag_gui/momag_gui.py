@@ -21,88 +21,81 @@ from momag_ import run_momag
 class GUIWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(733, 702)
+        MainWindow.resize(733, 703)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.frames = QtWidgets.QLabel(self.centralwidget)
-        self.frames.setGeometry(QtCore.QRect(60, 20, 581, 401))
+        self.frames.setGeometry(QtCore.QRect(70, 20, 581, 401))
         self.frames.setText("")
         self.frames.setObjectName("frames")
         self.frame_slider = QtWidgets.QSlider(self.centralwidget)
-        self.frame_slider.setGeometry(QtCore.QRect(30, 450, 671, 22))
+        self.frame_slider.setGeometry(QtCore.QRect(40, 450, 671, 22))
         self.frame_slider.setOrientation(QtCore.Qt.Horizontal)
         self.frame_slider.setObjectName("frame_slider")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(30, 530, 321, 61))
+        self.pushButton.setGeometry(QtCore.QRect(40, 530, 321, 61))
         self.pushButton.setObjectName("pushButton")
-        self.label_frame_zero = QtWidgets.QLabel(self.centralwidget)
-        self.label_frame_zero.setGeometry(QtCore.QRect(90, 486, 51, 20))
-        self.label_frame_zero.setText("")
-        self.label_frame_zero.setObjectName("label_frame_zero")
-        self.label_frame_n = QtWidgets.QLabel(self.centralwidget)
-        self.label_frame_n.setGeometry(QtCore.QRect(230, 485, 121, 21))
-        self.label_frame_n.setText("")
-        self.label_frame_n.setObjectName("label_frame_n")
         self.frame_number = QtWidgets.QLabel(self.centralwidget)
-        self.frame_number.setGeometry(QtCore.QRect(630, 430, 71, 20))
+        self.frame_number.setGeometry(QtCore.QRect(640, 430, 71, 20))
         self.frame_number.setText("")
         self.frame_number.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.frame_number.setObjectName("frame_number")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(30, 480, 61, 31))
-        self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(160, 480, 61, 31))
-        self.label_2.setObjectName("label_2")
         self.run_motion_magnification = QtWidgets.QPushButton(self.centralwidget)
-        self.run_motion_magnification.setGeometry(QtCore.QRect(550, 540, 161, 51))
+        self.run_motion_magnification.setGeometry(QtCore.QRect(560, 540, 161, 51))
         self.run_motion_magnification.setObjectName("run_motion_magnification")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(400, 540, 31, 40))
+        self.label_3.setGeometry(QtCore.QRect(410, 540, 31, 40))
         self.label_3.setObjectName("label_3")
         self.lineEdit_alpha = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_alpha.setGeometry(QtCore.QRect(440, 550, 61, 20))
+        self.lineEdit_alpha.setGeometry(QtCore.QRect(450, 550, 61, 20))
         self.lineEdit_alpha.setObjectName("lineEdit_alpha")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(400, 600, 91, 40))
+        self.label_4.setGeometry(QtCore.QRect(410, 600, 91, 40))
         self.label_4.setObjectName("label_4")
         self.lineEdit_frame_rate = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_frame_rate.setGeometry(QtCore.QRect(490, 610, 61, 20))
+        self.lineEdit_frame_rate.setGeometry(QtCore.QRect(500, 610, 61, 20))
         self.lineEdit_frame_rate.setObjectName("lineEdit_frame_rate")
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(470, 480, 111, 20))
+        self.label_5.setGeometry(QtCore.QRect(480, 480, 111, 20))
         self.label_5.setObjectName("label_5")
         self.label_total_frames = QtWidgets.QLabel(self.centralwidget)
-        self.label_total_frames.setGeometry(QtCore.QRect(580, 480, 121, 21))
+        self.label_total_frames.setGeometry(QtCore.QRect(590, 480, 121, 21))
         self.label_total_frames.setText("")
         self.label_total_frames.setObjectName("label_total_frames")
         self.lineEdit_file_name = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_file_name.setGeometry(QtCore.QRect(460, 640, 161, 20))
+        self.lineEdit_file_name.setGeometry(QtCore.QRect(470, 640, 161, 20))
         self.lineEdit_file_name.setObjectName("lineEdit_file_name")
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setGeometry(QtCore.QRect(400, 630, 51, 40))
+        self.label_6.setGeometry(QtCore.QRect(410, 630, 51, 40))
         self.label_6.setObjectName("label_6")
         self.line_2 = QtWidgets.QFrame(self.centralwidget)
-        self.line_2.setGeometry(QtCore.QRect(370, 490, 20, 171))
+        self.line_2.setGeometry(QtCore.QRect(380, 490, 20, 171))
         self.line_2.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
-        self.label_7.setGeometry(QtCore.QRect(400, 510, 111, 20))
+        self.label_7.setGeometry(QtCore.QRect(410, 510, 111, 20))
         self.label_7.setObjectName("label_7")
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
-        self.label_8.setGeometry(QtCore.QRect(400, 570, 51, 40))
+        self.label_8.setGeometry(QtCore.QRect(410, 570, 51, 40))
         self.label_8.setObjectName("label_8")
         self.lineEdit_threshold = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_threshold.setGeometry(QtCore.QRect(460, 580, 61, 20))
+        self.lineEdit_threshold.setGeometry(QtCore.QRect(470, 580, 61, 20))
         self.lineEdit_threshold.setObjectName("lineEdit_threshold")
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        self.label_9.setGeometry(QtCore.QRect(30, 600, 271, 31))
+        self.label_9.setGeometry(QtCore.QRect(40, 600, 271, 31))
         self.label_9.setTextFormat(QtCore.Qt.RichText)
         self.label_9.setObjectName("label_9")
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
-        self.label_10.setGeometry(QtCore.QRect(30, 630, 291, 10))
+        self.label_10.setGeometry(QtCore.QRect(40, 630, 291, 10))
         self.label_10.setObjectName("label_10")
+        self.label_11 = QtWidgets.QLabel(self.centralwidget)
+        self.label_11.setGeometry(QtCore.QRect(40, 490, 51, 20))
+        self.label_11.setObjectName("label_11")
+        self.label_segments = QtWidgets.QLabel(self.centralwidget)
+        self.label_segments.setGeometry(QtCore.QRect(100, 490, 51, 21))
+        self.label_segments.setText("")
+        self.label_segments.setObjectName("label_segments")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 733, 21))
@@ -117,6 +110,7 @@ class GUIWindow(object):
         self.actionLoad_HDF_File.setObjectName("actionLoad_HDF_File")
         self.menuFile.addAction(self.actionLoad_HDF_File)
         self.menubar.addAction(self.menuFile.menuAction())
+        self.frames_list = None
         self.start_frame = None
 
 
@@ -127,8 +121,6 @@ class GUIWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Load HDF5"))
         self.pushButton.setText(_translate("MainWindow", "Select Frames"))
-        self.label.setText(_translate("MainWindow", "first frame:"))
-        self.label_2.setText(_translate("MainWindow", "last frame:"))
         self.run_motion_magnification.setText(_translate("MainWindow", "Run Motion Magnification"))
         self.label_3.setText(_translate("MainWindow", "alpha:"))
         self.label_4.setText(_translate("MainWindow", "video frame rate:"))
@@ -136,8 +128,9 @@ class GUIWindow(object):
         self.label_6.setText(_translate("MainWindow", "file name:"))
         self.label_7.setText(_translate("MainWindow", "Configuration:"))
         self.label_8.setText(_translate("MainWindow", "threshold:"))
-        self.label_9.setText(_translate("MainWindow", "Press \'Select Frames\' one time to select the first frame,"))
+        self.label_9.setText(_translate("MainWindow", "Press \'Select Frames\' one time to select the first frame-- ,"))
         self.label_10.setText(_translate("MainWindow", "and press it second time to select last frame."))
+        self.label_11.setText(_translate("MainWindow", "Segments:"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionLoad_HDF_File.setText(_translate("MainWindow", "Load HDF File"))
 
@@ -178,40 +171,55 @@ class GUIWindow(object):
             self.frames.setPixmap(pixmap)
 
     def selectFrame(self):
+
+        def _count_generator(reader):
+            b = reader(1024 * 1024)
+            while b:
+                yield b
+                b = reader(1024 * 1024)
+
         currentFrame = self.frame_slider.value()
         if not hasattr(self, 'labelFrameZeroSet'):
-            self.label_frame_zero.setText(str(currentFrame))
             self.start_frame = int(currentFrame)
             self.labelFrameZeroSet = True
-            with open(f'frames.txt', 'w') as f:
+
+            with open(f'frames.txt', f'a') as f:
                 f.write(f"frame_0={int(currentFrame)}\n")
                 f.close()
         else:
-            self.label_frame_n.setText(str(currentFrame))
-
             with open(f'frames.txt', 'a') as f:
                 f.write(f"frame_n={int(currentFrame)}\n")
 
             self.label_total_frames.setText(f'{int(currentFrame-self.start_frame)}')
 
+
+            with open(r'frames.txt', 'rb') as fp:
+                c_generator = _count_generator(fp.raw.read)
+                count = sum(buffer.count(b'\n') for buffer in c_generator)
+                self.label_segments.setText(f"{int (count/2)}")
+
+
+
     def momag(self):
-        frame_0_value = None
-        frame_n_value = None
+
+        self.frames_list = []
+        values = []
 
         with open('frames.txt', 'r') as file:
             for line in file:
-                if 'frame_0=' in line:
-                    frame_0_value = int(line.split('=')[1].strip())
-                elif 'frame_n=' in line:
-                    frame_n_value = int(line.split('=')[1].strip())
+                line = line.strip()
+                if line:
+                    _, value = line.split('=')
+                    values.append(int(value))
+                    if len(values) == 2:
+                        self.frames_list.append(tuple(values))
+                        values = []
 
         run_momag(path_to_hdf_file=self.fileName,
-                  frame_zero=frame_0_value,
-                  frame_n=frame_n_value,
                   alpha=int(self.lineEdit_alpha.text()),
                   threshold=int(self.lineEdit_threshold.text()),
                   frame_rate=int(self.lineEdit_frame_rate.text()),
-                  file_name=self.lineEdit_file_name.text())
+                  file_name=self.lineEdit_file_name.text(), frames_list=self.frames_list)
 
 
 class MainWindow(QMainWindow):
@@ -228,6 +236,7 @@ class MainWindow(QMainWindow):
 
 
 def main():
+    open('frames.txt', 'w').close()
     app = QApplication(sys.argv)
     main_window = MainWindow()
     main_window.show()
