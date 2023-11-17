@@ -23,8 +23,6 @@ class DummyTextFile():
     output_file = Path("frames.txt")
     open('frames.txt', 'w').close()
 
-
-
 class GUIWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -57,10 +55,10 @@ class GUIWindow(object):
         self.lineEdit_alpha.setGeometry(QtCore.QRect(450, 550, 61, 20))
         self.lineEdit_alpha.setObjectName("lineEdit_alpha")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(410, 600, 91, 40))
+        self.label_4.setGeometry(QtCore.QRect(410, 630, 91, 40))
         self.label_4.setObjectName("label_4")
         self.lineEdit_frame_rate = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_frame_rate.setGeometry(QtCore.QRect(500, 610, 61, 20))
+        self.lineEdit_frame_rate.setGeometry(QtCore.QRect(500, 640, 61, 20))
         self.lineEdit_frame_rate.setObjectName("lineEdit_frame_rate")
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(480, 480, 111, 20))
@@ -104,11 +102,11 @@ class GUIWindow(object):
         self.label_segments.setText("")
         self.label_segments.setObjectName("label_segments")
         self.lineEdit_frame_sampling_rate = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_frame_sampling_rate.setGeometry(QtCore.QRect(510, 641, 61, 20))
+        self.lineEdit_frame_sampling_rate.setGeometry(QtCore.QRect(470, 610, 61, 20))
         self.lineEdit_frame_sampling_rate.setText("")
         self.lineEdit_frame_sampling_rate.setObjectName("lineEdit_frame_sampling_rate")
         self.label_12 = QtWidgets.QLabel(self.centralwidget)
-        self.label_12.setGeometry(QtCore.QRect(410, 630, 101, 41))
+        self.label_12.setGeometry(QtCore.QRect(410, 600, 51, 41))
         self.label_12.setObjectName("label_12")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -145,7 +143,7 @@ class GUIWindow(object):
         self.label_9.setText(_translate("MainWindow", "Press \'Select Frames\' one time to select the first frame-- ,"))
         self.label_10.setText(_translate("MainWindow", "and press it second time to select last frame."))
         self.label_11.setText(_translate("MainWindow", "Segments:"))
-        self.label_12.setText(_translate("MainWindow", "frame sampling rate:"))
+        self.label_12.setText(_translate("MainWindow", "frame skip:"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionLoad_HDF_File.setText(_translate("MainWindow", "Load HDF File"))
 
@@ -170,12 +168,7 @@ class GUIWindow(object):
             self.hdfFile['Frames'].id.refresh()
             frame = self.hdfFile['Frames'][frameIndex]
             color_frame = self.debeyer(frame)
-            # color_frame = cv2.cvtColor(frame, cv2.COLOR_BAYER_BG2RGB)
-
             resized_image = cv2.resize(color_frame, None, fx=0.33, fy=0.33)
-
-
-
             h,w,c = resized_image.shape
             resized_image =cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB)
             bytes_per_line = c * w
@@ -207,13 +200,10 @@ class GUIWindow(object):
 
             self.label_total_frames.setText(f'{int(currentFrame-self.start_frame)}')
 
-
             with open(r'frames.txt', 'rb') as fp:
                 c_generator = _count_generator(fp.raw.read)
                 count = sum(buffer.count(b'\n') for buffer in c_generator)
                 self.label_segments.setText(f"{int (count/2)}")
-
-
 
     def momag(self):
 
