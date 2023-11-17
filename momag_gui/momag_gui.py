@@ -169,18 +169,18 @@ class GUIWindow(object):
             self.frame_number.setText(f'{frameIndex}')
             self.hdfFile['Frames'].id.refresh()
             frame = self.hdfFile['Frames'][frameIndex]
-            frame = self.debeyer(frame)
+            color_frame = self.debeyer(frame)
+            # color_frame = cv2.cvtColor(frame, cv2.COLOR_BAYER_BG2RGB)
 
-            rgb = cv2.resize(frame, (frame.shape[1] // 4 * 4, frame.shape[0] // 3 * 3), fx=0, fy=0,
-                                 interpolation=cv2.INTER_NEAREST)
+            resized_image = cv2.resize(color_frame, None, fx=0.33, fy=0.33)
 
 
-            new_width = 645
-            new_height = 405
 
-            resized_image = cv2.resize(rgb, (new_width, new_height))
+            h,w,c = resized_image.shape
+            resized_image =cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB)
+            bytes_per_line = c * w
 
-            qimage = QImage(resized_image.data, resized_image.shape[1], resized_image.shape[0],
+            qimage = QImage(resized_image.data, resized_image.shape[1], resized_image.shape[0],bytes_per_line,
                             QImage.Format_RGB888)
             pixmap = QPixmap.fromImage(qimage)
             self.frames.setPixmap(pixmap)
