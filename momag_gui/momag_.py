@@ -13,7 +13,7 @@ import sys
 from neurovc.momag import ThreshCompressor
 
 
-def run_momag(path_to_hdf_file, alpha, threshold, frame_rate, file_name, frames_list):
+def run_momag(path_to_hdf_file, alpha, threshold, frame_rate, file_name, frames_list, frame_sampling_rate):
 
     for index, segmented_frames in enumerate(frames_list):
         first_frame, second_frame = segmented_frames
@@ -31,7 +31,7 @@ def run_momag(path_to_hdf_file, alpha, threshold, frame_rate, file_name, frames_
         writer = VideoWriter(f"{str(file_name)}_seg_{index}.mp4", framerate=frame_rate)
 
         with h5py.File(input_file, "r") as f:
-            for i in range(first_frame, second_frame, 3):
+            for i in range(first_frame, second_frame, frame_sampling_rate):
                 frame = f["Frames"][i]
                 frame = cv2.resize(debayerer(frame), None, fx=0.5, fy=0.5)
 

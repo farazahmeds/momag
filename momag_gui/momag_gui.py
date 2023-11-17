@@ -9,6 +9,7 @@
 
 
 import sys
+from pathlib import Path
 import h5py
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow
@@ -18,10 +19,16 @@ import cv2
 from neurovc.util.IO_util import Debayerer
 from momag_ import run_momag
 
+class DummyTextFile():
+    output_file = Path("frames.txt")
+    open('frames.txt', 'w').close()
+
+
+
 class GUIWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(733, 703)
+        MainWindow.resize(733, 735)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.frames = QtWidgets.QLabel(self.centralwidget)
@@ -63,13 +70,13 @@ class GUIWindow(object):
         self.label_total_frames.setText("")
         self.label_total_frames.setObjectName("label_total_frames")
         self.lineEdit_file_name = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_file_name.setGeometry(QtCore.QRect(470, 640, 161, 20))
+        self.lineEdit_file_name.setGeometry(QtCore.QRect(470, 670, 161, 20))
         self.lineEdit_file_name.setObjectName("lineEdit_file_name")
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setGeometry(QtCore.QRect(410, 630, 51, 40))
+        self.label_6.setGeometry(QtCore.QRect(410, 660, 51, 40))
         self.label_6.setObjectName("label_6")
         self.line_2 = QtWidgets.QFrame(self.centralwidget)
-        self.line_2.setGeometry(QtCore.QRect(380, 490, 20, 171))
+        self.line_2.setGeometry(QtCore.QRect(380, 490, 20, 211))
         self.line_2.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
@@ -96,6 +103,13 @@ class GUIWindow(object):
         self.label_segments.setGeometry(QtCore.QRect(100, 490, 51, 21))
         self.label_segments.setText("")
         self.label_segments.setObjectName("label_segments")
+        self.lineEdit_frame_sampling_rate = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_frame_sampling_rate.setGeometry(QtCore.QRect(510, 641, 61, 20))
+        self.lineEdit_frame_sampling_rate.setText("")
+        self.lineEdit_frame_sampling_rate.setObjectName("lineEdit_frame_sampling_rate")
+        self.label_12 = QtWidgets.QLabel(self.centralwidget)
+        self.label_12.setGeometry(QtCore.QRect(410, 630, 101, 41))
+        self.label_12.setObjectName("label_12")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 733, 21))
@@ -131,6 +145,7 @@ class GUIWindow(object):
         self.label_9.setText(_translate("MainWindow", "Press \'Select Frames\' one time to select the first frame-- ,"))
         self.label_10.setText(_translate("MainWindow", "and press it second time to select last frame."))
         self.label_11.setText(_translate("MainWindow", "Segments:"))
+        self.label_12.setText(_translate("MainWindow", "frame sampling rate:"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionLoad_HDF_File.setText(_translate("MainWindow", "Load HDF File"))
 
@@ -219,7 +234,9 @@ class GUIWindow(object):
                   alpha=int(self.lineEdit_alpha.text()),
                   threshold=int(self.lineEdit_threshold.text()),
                   frame_rate=int(self.lineEdit_frame_rate.text()),
-                  file_name=self.lineEdit_file_name.text(), frames_list=self.frames_list)
+                  file_name=self.lineEdit_file_name.text(),
+                  frames_list=self.frames_list,
+                  frame_sampling_rate=int(self.lineEdit_frame_sampling_rate.text()))
 
 
 class MainWindow(QMainWindow):
@@ -236,7 +253,7 @@ class MainWindow(QMainWindow):
 
 
 def main():
-    open('frames.txt', 'w').close()
+    DummyTextFile()
     app = QApplication(sys.argv)
     main_window = MainWindow()
     main_window.show()
