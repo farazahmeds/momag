@@ -18,6 +18,8 @@ from PyQt5.QtGui import QImage
 import cv2
 from neurovc.util.IO_util import Debayerer
 from momag_ import run_momag
+from datetime import datetime, timedelta
+import pytz
 
 class DummyTextFile():
     output_file = Path("frames.txt")
@@ -108,6 +110,10 @@ class GUIWindow(object):
         self.label_12 = QtWidgets.QLabel(self.centralwidget)
         self.label_12.setGeometry(QtCore.QRect(410, 600, 51, 41))
         self.label_12.setObjectName("label_12")
+        self.label_timestamp = QtWidgets.QLabel(self.centralwidget)
+        self.label_timestamp.setGeometry(QtCore.QRect(210, 490, 151, 21))
+        self.label_timestamp.setText("")
+        self.label_timestamp.setObjectName("label_timestamp")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 733, 21))
@@ -122,6 +128,7 @@ class GUIWindow(object):
         self.actionLoad_HDF_File.setObjectName("actionLoad_HDF_File")
         self.menuFile.addAction(self.actionLoad_HDF_File)
         self.menubar.addAction(self.menuFile.menuAction())
+        self.time_stamp = None
         self.frames_list = None
         self.start_frame = None
 
@@ -162,11 +169,27 @@ class GUIWindow(object):
             yield frame
 
     def updateFrame(self, frameIndex):
+        def convert_timestamp(timestamp_ms, timezone_str='UTC'):
+            local_tz = pytz.timezone(timezone_str)
+
+            timestamp_s = timestamp_ms / 1000
+            dt_utc = datetime.utcfromtimestamp(timestamp_s).replace(tzinfo=pytz.utc)
+
+            dt_local = dt_utc.astimezone(local_tz)
+
+            dt_local += timedelta(milliseconds=timestamp_ms % 1000)
+            return dt_local.strftime("%H:%M:%S.%f")[:-3]
+
         if hasattr(self, 'framesGenerator'):
             self.debeyer = Debayerer()
             self.frame_number.setText(f'{frameIndex}')
             self.hdfFile['Frames'].id.refresh()
             frame = self.hdfFile['Frames'][frameIndex]
+            time_stamp = self.hdfFile['Timestamps_ms'][frameIndex]
+            self.label_timestamp.setText(f'{self.time_stamp}')
+
+            self.time_stamp = convert_timestamp(timestamp_ms=time_stamp, timezone_str='Europe/Berlin')
+
             color_frame = self.debeyer(frame)
             resized_image = cv2.resize(color_frame, None, fx=0.33, fy=0.33)
             h,w,c = resized_image.shape
@@ -177,6 +200,7 @@ class GUIWindow(object):
                             QImage.Format_RGB888)
             pixmap = QPixmap.fromImage(qimage)
             self.frames.setPixmap(pixmap)
+
 
     def selectFrame(self):
 

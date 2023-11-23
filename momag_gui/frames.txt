@@ -1,4 +1,4 @@
-frame_0=489
-frame_n=549
-frame_n=1200
-frame_n=1270
+frame_0=223
+frame_n=412
+frame_n=840
+frame_n=1149
