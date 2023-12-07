@@ -1,0 +1,4 @@
+cwd: ${hydra:runtime.cwd}
+input_video: sample_video.mp4
+output_video: mag.avi
+alpha: 20

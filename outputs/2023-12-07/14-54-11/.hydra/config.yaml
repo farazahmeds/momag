@@ -1,0 +1,17 @@
+work_dir: ${hydra:runtime.cwd}
+study:
+  subject_id: subject_5
+  blocks: 3
+  time_stamp_id: P01B01
+  visual_trigger: true
+  audio_trigger: false
+motion_magnification:
+  alpha: 3
+  threshold: 2
+  reference_frame: 0
+  frame_resize: 0.5
+input:
+  path_to_hdf_video: F:\dils_compressed\
+output:
+  output_path: C:\Users\faraz\PycharmProjects\momag_fork\momag\results_dils\test_results\test_config
+  video_frame_rate: 12

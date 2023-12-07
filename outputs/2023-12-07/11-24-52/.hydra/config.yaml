@@ -1,0 +1,9 @@
+work_dir: ${hydra:runtime.cwd}
+subject_id: subject_5
+time_stamp_name: P05B3
+input_file: F:\dils_compressed\subject_5\subject_n_0.h5
+output_path: C:\Users\faraz\PycharmProjects\momag_fork\momag\results_dils\test_results\slowed_down_visual_triggers_only\subject_5\subject_5\alpha=30
+motion_magnification:
+  mag_factor: 30
+  reference_frame: 0
+sweep: false

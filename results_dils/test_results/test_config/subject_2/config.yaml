@@ -1,0 +1,16 @@
+input:
+  path_to_hdf_video: F:\dils_compressed\
+motion_magnification:
+  alpha: 3
+  frame_resize: 0.5
+  reference_frame: 0
+  threshold: 2
+output:
+  output_path: C:\Users\faraz\PycharmProjects\momag_fork\momag\results_dils\test_results\test_config
+  video_frame_rate: 12
+study:
+  audio_trigger: false
+  blocks: 3
+  subject_id: subject_2
+  visual_trigger: true
+work_dir: C:\Users\faraz\PycharmProjects\momag_fork\momag

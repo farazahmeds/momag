@@ -1,0 +1,3 @@
+work_dir: ${hydra:runtime.cwd}
+input_file: F:\exp\rgb\20231027_141808_rec_rgb.h5
+output_file: output.mp4

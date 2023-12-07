@@ -21,3 +21,7 @@ cmake-build-debug/
 
 test/
 evaluations
+/configs/dils/
+/Data/
+/results_dils/
+/compressions/
