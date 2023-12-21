@@ -18,12 +18,55 @@ import difflib
 @hydra.main(config_path="./configs/dils", config_name='config')
 def main(config: DictConfig):
 
+    # trigger files parse
+
     trigger_string_ = ''.join(['P',str((config.study.subject_id.split('_')[1])),'B', f'{config.study.blocks}'])
-    trigger_files = [os.path.basename(x) for x in  glob.glob(f"{config.work_dir}/Data/trigger_files/*.txt")]
+    trigger_files = [os.path.basename(x) for x in glob.glob(f"{config.work_dir}/Data/trigger_files/*.txt")]
     sep_ = ['_'.join(x.split('_')[0:1]) for x in trigger_files]
     time_stamp_id = difflib.get_close_matches(f'{trigger_string_}', sep_)[0]
 
     comp = ThreshCompressor(alpha=config.motion_magnification.alpha, threshold=config.motion_magnification.threshold)
+
+    # faces files parse
+
+    faces_files = glob.glob(f"{config.work_dir}/Data/faces/*.txt")
+
+    def similarity_score(s1, s2):
+        """Calculate the number of matching characters in the same position."""
+        return sum(1 for a, b in zip(s1, s2) if a == b)
+
+    # Remove the first character from each filename and compute similarity
+    scores = []
+    for path in faces_files:
+        filename = os.path.basename(path)[:-4]  # Remove extension and get the filename
+        modified_filename = filename[1:]  # Ignore the first character
+        score = similarity_score(modified_filename, time_stamp_id)
+        scores.append((path, score))
+
+    # Find the path with the highest score
+    face_file_path = max(scores, key=lambda x: x[1])[0]
+
+    print (face_file_path)
+
+    try:
+        with open(f'{face_file_path}', 'r') as file:
+            # Read the file content
+            content = file.read()
+            # Split the content by comma and convert each item to an integer
+            integers = [int(item) for item in content.split(',')]
+
+        # Finding the index of the first '0' integer
+        reference_frame_neutral = integers.index(1)
+        print(f"The index of the first '1' is: {reference_frame_neutral}")
+
+    except FileNotFoundError:
+        print(f"File not found: {face_file_path}")
+    except ValueError as e:
+        # This will catch both conversion errors and not finding '0'
+        print(f"An error occurred: {e}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 
     if config.study.visual_trigger:
         time_stamps = [rf'{config.work_dir}/Data/trigger_files/{time_stamp_id}_vis.txt']
@@ -64,7 +107,7 @@ def main(config: DictConfig):
                     frame = f["Frames"][i]
                     frame = cv2.resize(debayerer(frame), None, fx=config.motion_magnification.frame_resize, fy=config.motion_magnification.frame_resize)
 
-                    ref = cv2.resize(debayerer(f["Frames"][int(config.motion_magnification.reference_frame)]), None, fx=config.motion_magnification.frame_resize, fy=config.motion_magnification.frame_resize)
+                    ref = cv2.resize(debayerer(f["Frames"][int(reference_frame_neutral)]), None, fx=config.motion_magnification.frame_resize, fy=config.motion_magnification.frame_resize)
 
                     if motion_magnifier is None:
                         motion_magnifier = OnlineLandmarkMagnifier(
