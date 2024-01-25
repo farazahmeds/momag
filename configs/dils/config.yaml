@@ -1,0 +1,18 @@
+work_dir: ${hydra:runtime.cwd}
+
+study:
+  subject_id: 1
+  blocks: 1
+  visual_trigger: True
+
+motion_magnification:
+  frame_resize: 1
+  alpha: 5
+  threshold: 1
+
+input:
+  path_to_recordings: 'D:\dils\'
+
+output:
+  video_frame_rate: 5
+  output_path: 'C:\Users\faraz\PycharmProjects\momag\momag\output'
